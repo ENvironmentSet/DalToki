@@ -1,0 +1,15 @@
+{
+  "name": "TTeok",
+  "version": "1.0.0 (DalToki)",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "github.com/ENvironmentSet/TTeok"
+  },
+  "description": "esay HTML like laguage",
+  "license": "GNU General Public License v3",
+  "bugs" : {
+    "url": "github.com/ENvironmentSet/TTeok",
+    "email" : "sbshw1@gmail.com"
+  }
+}
