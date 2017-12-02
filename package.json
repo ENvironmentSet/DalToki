@@ -8,9 +8,9 @@
   },
   "description": "esay HTML like laguage",
   "license": "GNU General Public License v3",
-  "bugs" : {
+  "bugs": {
     "url": "github.com/ENvironmentSet/TTeok",
-    "email" : "sbshw1@gmail.com"
-  }
+    "email": "sbshw1@gmail.com"
+  },
+  "dependencies": {}
 }
-
