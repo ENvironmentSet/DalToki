@@ -1,6 +1,0 @@
-{
-  "main" : "test.ttks",
-  "dependencies" : [
-    "dtest.ttkh"
-  ]
-}
