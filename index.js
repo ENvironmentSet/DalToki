@@ -7,6 +7,7 @@ var Runner = require(path.join(interpreter_path,"lib","Runner.js"));
 var program = JSON.parse(fs.readFileSync(path.join(program_dir_path,"TTeok_dependencies.json")));
 var VM = Runner();
 
+VM.load(path.join(__dirname,"standard_modules","standard_builtIN.js"));
 program.dependencies.map( function loadHeaderFiles (name) {
     VM.load(path.join(program_dir_path,name));
 });

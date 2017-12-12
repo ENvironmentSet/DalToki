@@ -1,3 +1,7 @@
 <MAIN>
-	<@PRINT args=`"Hello, world"` />
+	<var name = `rec` />
+	<Array name = `ArrayTEST` values=`1,2,"hi",5.5`/>
+	<@SETVALUE args=`Arraytest,2,"Hello, world"` />
+	<@INDEXING args=`rec,ArrayTest,2`/>
+	<@PRINT args=`rec` />
 </MAIN>
