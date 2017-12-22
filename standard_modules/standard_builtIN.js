@@ -29,6 +29,25 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
                 throw new RunnerException("@ADD function's [DIS] arg's type is must integer,string,float");
         }
     }
+    WINDOW.scope["@SUB"] = new Func("built-in",add,["dis","src"]);
+    function add (dis,src) {
+        dis = dis.get();
+        src = src.get();
+        switch (dis.type) {
+            case "integer":
+                if(src.type === "integer") {
+                    dis.sub(src);
+                } else throw new RunnerException("Integer addition is available at only integer type");
+                break;
+            case "float":
+                if(src.type === "integer" || src.type === "Float") {
+                    dis.sub(src);
+                } else throw new RunnerException("Float addition is available at only integer and float type");
+                break;
+            default :
+                throw new RunnerException("@SUB function's [DIS] arg's type is must integer,float");
+        }
+    }
     WINDOW.scope["@INDEXING"] = new Func("built-in",array_indexing,["dis","array","index"]);
     function array_indexing(dis,array,index) {
         if(array.type !== "array") new Exception("only array allow indexing");
