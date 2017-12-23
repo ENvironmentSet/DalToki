@@ -10,7 +10,7 @@ function setBuiltInHttpFunctions (WINDOW,Var,Func,Exception) {
             ,"object");
     }
     WINDOW.scope["@SEND_HTTP_REQUEST"] = new Func("built-in",sendHttpRequest,["src"]);
-    function sendHttpRequest (src,_scope) {
+    function sendHttpRequest (src,_scope,callback) {
         if(src.constructor !== Var) new Exception("source is not a variable");
         src = src.get();
         var options = {
@@ -25,12 +25,14 @@ function setBuiltInHttpFunctions (WINDOW,Var,Func,Exception) {
             });
             response.on('end', function () {
                 src.read("RESULT").change(serverData,"string");
+                callback.callFunc([],_scope);
             });
         }
         http.request(options, function(response){
             handleResponse(response);
         }).on('error' , (e) => {
             src.read("RESULT").change("ERROR : "+e,"string");
+            callback.callFunc([],_scope);
         }).end();
     }
 }
