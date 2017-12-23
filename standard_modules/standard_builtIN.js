@@ -2,11 +2,11 @@ module.exports = setBuiltInFunctions;
 
 function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
     WINDOW.scope["@PRINT"] = new Func("built-in",print,["string"]);
-    function print (string) {
+    function print (string,_scope) {
         console.log(string.get_unwrap());
     }
     WINDOW.scope["@ADD"] = new Func("built-in",add,["dis","src"]);
-    function add (dis,src) {
+    function add (dis,src,_scope) {
         dis = dis.get();
         src = src.get();
         switch (dis.type) {
@@ -30,7 +30,7 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
         }
     }
     WINDOW.scope["@SUB"] = new Func("built-in",sub,["dis","src"]);
-    function sub (dis,src) {
+    function sub (dis,src,_scope) {
         dis = dis.get();
         src = src.get();
         switch (dis.type) {
@@ -49,34 +49,34 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
         }
     }
     WINDOW.scope["@INDEXING"] = new Func("built-in",array_indexing,["dis","array","index"]);
-    function array_indexing(dis,array,index) {
+    function array_indexing(dis,array,index,_scope) {
         if(array.type !== "array") new Exception("only array allow indexing");
         if(index.type !== "integer") new Exception("only integer can be index");
         if(dis.constructor !== Var) new Exception("destination is not a variable");
         dis.change(array.read(index.get_unwrap()).get_unwrap());
     }
     WINDOW.scope["@SETVALUE"] = new Func("built-in",array_setValue,["array","index","value"]);
-    function array_setValue(array,index,value) {
+    function array_setValue(array,index,value,_scope) {
         if(array.type !== "array") new Exception("only array allow indexing");
         if(index.type !== "integer") new Exception("only integer can be index");
         if(value.constructor !== Var) new Exception("destination is not a variable");
         array.set(index.get_unwrap(),value);
     }
     WINDOW.scope["@READPROP"] = new Func("built-in",object_readProp,["dis","object","key"]);
-    function object_readProp(dis,object,key) {
+    function object_readProp(dis,object,key,_scope) {
         if(object.type !== "object") new Exception("only object allow property-reading");
         if(key.type !== "string") new Exception("only string can be index");
         if(dis.constructor !== Var) new Exception("destination is not a variable");
-        dis.change(object.read(key.get_unwrap()).get_unwrap());
+        dis.change(object.get().read(key.get_unwrap()).get_unwrap());
     }
     WINDOW.scope["@SETPROP"] = new Func("built-in",object_setProp,["object","key","value"]);
-    function object_setProp(object,key,value) {
+    function object_setProp(object,key,value,_scope) {
         if(object.type !== "object") new Exception("only object allow property-reading");
         if(key.type !== "string") new Exception("only string can be index");
-        object.read(key.get_unwrap()).change(value.get_unwrap());
+        object.get().read(key.get_unwrap()).change(value.get_unwrap());
     }
     WINDOW.scope["@DEBUG_LOG"] =  new Func("built-in",debug_log,["item"]);
-    function debug_log (item) {
+    function debug_log (item,_scope) {
         console.log(require("util").inspect(item.get_unwrap(),{showHidden : false,depth : null}));
     }
 }
