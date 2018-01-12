@@ -76,7 +76,5 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
     function assignment (dis,src,_scope,_callback) {
         src = src.get();
         dis.change(src.value,src.type);
-        _scope.S = new Var("비밀정보","STRING");
-        _callback.callFunc([],Object.getPrototypeOf(_scope));
     }
 }
