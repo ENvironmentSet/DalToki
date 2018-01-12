@@ -73,7 +73,7 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
         console.log(require("util").inspect(item.get_unwrap(),{showHidden : false,depth : null}));
     }
     WINDOW.scope["@ASSIGNMENT"] = new Func("BUILT-IN",assignment,["dis","src"]);
-    function assignment (dis,src) {
+    function assignment (dis,src,_scope) {
         src = src.get();
         dis.change(src.value,src.type);
     }
