@@ -1,12 +1,13 @@
 module.exports = setBuiltInFunctions;
 
 function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
-    WINDOW.scope["@PRINT"] = new Func("built-in",print,["string"]);
-    function print (string,_scope) {
-        console.log(string.get_unwrap());
+    WINDOW.scope["@PRINT"] = new Func("built-in",print,["variable"]);
+    function print (variable,_scope,_callback) {
+        if(variable.type !== "string") variable = variable.get().toString();
+        console.log(variable.get_unwrap());
     }
     WINDOW.scope["@ADD"] = new Func("built-in",add,["dis","src"]);
-    function add (dis,src,_scope) {
+    function add (dis,src,_scope,_callback) {
         dis = dis.get();
         src = src.get();
         switch (dis.type) {
@@ -30,7 +31,7 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
         }
     }
     WINDOW.scope["@SUB"] = new Func("built-in",sub,["dis","src"]);
-    function sub (dis,src,_scope) {
+    function sub (dis,src,_scope,_callback) {
         dis = dis.get();
         src = src.get();
         switch (dis.type) {
@@ -49,7 +50,7 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
         }
     }
     WINDOW.scope["@MUL"] = new Func("built-in",mul,["dis","src"]);
-    function mul (dis,src,_scope) {
+    function mul (dis,src,_scope,_callback) {
         dis = dis.get();
         src = src.get();
         switch (dis.type) {
@@ -68,7 +69,7 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
         }
     }
     WINDOW.scope["@DEBUG_LOG"] =  new Func("built-in",debug_log,["item"]);
-    function debug_log (item,_scope) {
+    function debug_log (item,_scope,_callback) {
         console.log(require("util").inspect(item.get_unwrap(),{showHidden : false,depth : null}));
     }
 }
