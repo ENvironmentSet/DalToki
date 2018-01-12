@@ -1,6 +1,15 @@
 <MAIN>
 	<var name=`a` value=`"h"` type=`string` />
 	<array name=`x` values=`1,2,3,4,5` />
-	<@assignment args=`a,x` />
-	<@print args=`a` />
+	<@assignment args=`a,x` callback>
+	    <@print args=`S` />
+	</@assignment>
+	#일부러 assigiment에서 로컬로 변수를 만들게 함
+	#또한 일부러 콜백을 call 하게 함
+	#function assignment (dis,src,_scope) {
+    #         src = src.get();
+    #        dis.change(src.value,src.type);
+    #         _scope.S = new Var("비밀정보","STRING");
+    #         _callback.callFunc([],Object.getPrototypeOf(_scope));
+    #     }
 </MAIN>

@@ -73,8 +73,10 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
         console.log(require("util").inspect(item.get_unwrap(),{showHidden : false,depth : null}));
     }
     WINDOW.scope["@ASSIGNMENT"] = new Func("BUILT-IN",assignment,["dis","src"]);
-    function assignment (dis,src,_scope) {
+    function assignment (dis,src,_scope,_callback) {
         src = src.get();
         dis.change(src.value,src.type);
+        _scope.S = new Var("비밀정보","STRING");
+        _callback.callFunc([],Object.getPrototypeOf(_scope));
     }
 }
