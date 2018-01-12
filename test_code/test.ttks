@@ -1,3 +1,5 @@
 <MAIN>
-	<@PRINT args=`"Hello, world!"` />
+	<var name=`a` value=`"h"` type=`string` />
+	<@ASSIGNMENT args=`a,1234` />
+	<@print args=`a` />
 </MAIN>

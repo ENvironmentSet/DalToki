@@ -1,7 +1,7 @@
 module.exports = setBuiltInFunctions;
 
 function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
-    WINDOW.scope["@PRINT"] = new Func("built-in",print,["variable"]);
+    WINDOW.scope["@PRINT"] = new Func("built-in",print,["src"]);
     function print (variable,_scope,_callback) {
         if(variable.type !== "string") variable = variable.get().toString();
         console.log(variable.get_unwrap());
@@ -68,8 +68,13 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
                 throw new RunnerException("@SUB function's [DIS] arg's type is must integer,float");
         }
     }
-    WINDOW.scope["@DEBUG_LOG"] =  new Func("built-in",debug_log,["item"]);
+    WINDOW.scope["@DEBUG_LOG"] =  new Func("built-in",debug_log,["src"]);
     function debug_log (item,_scope,_callback) {
         console.log(require("util").inspect(item.get_unwrap(),{showHidden : false,depth : null}));
+    }
+    WINDOW.scope["@ASSIGNMENT"] = new Func("built-in",assignment,["dis","src"]);
+    function assignment (dis,src) {
+        src = src.get();
+        dis.change(src.value,src.type);
     }
 }
