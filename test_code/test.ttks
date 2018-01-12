@@ -1,5 +1,7 @@
 <MAIN>
-	<var name=`a` value=`"h"` type=`string` />
-	<@ASSIGNMENT args=`a,1234` />
-	<@print args=`a` />
+	<func name=`a` args=``>
+	    <var name=`x` value=`1,2,3,4` />
+	    <@print args=`x` />
+	</func>
+	<a args=``/>
 </MAIN>
