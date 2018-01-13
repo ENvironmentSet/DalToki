@@ -3,7 +3,7 @@ module.exports = setBuiltInFunctions;
 function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
     WINDOW.scope["@PRINT"] = new Func("BUILT-IN",print,["src"]);
     function print (variable,_scope,_callback) {
-        if(variable.type !== "string") variable = variable.get().toString();
+        if(variable.get().type !== "string") variable = variable.get().toString();
         console.log(variable.get_unwrap());
     }
     WINDOW.scope["@ADD"] = new Func("BUILT-IN",add,["dis","src"]);
