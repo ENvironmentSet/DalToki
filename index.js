@@ -17,7 +17,7 @@ for(var type in program.dependencies) {
             break;
         default:
             program.dependencies[type].map( function loadCoreModule (name) {
-                VM.load(path.join(interpreter_path,type,name));
+                VM.load(path.join(program_dir_path,name));
             });
             break;
     }

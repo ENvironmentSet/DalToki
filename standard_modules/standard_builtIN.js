@@ -75,6 +75,6 @@ function setBuiltInFunctions (WINDOW,Var,Func,Exception) {
     WINDOW.scope["@ASSIGNMENT"] = new Func("BUILT-IN",assignment,["dis","src"]);
     function assignment (dis,src,_scope,_callback) {
         src = src.get();
-        dis.change(src.value,src.type);
+        dis.change(src.value,src.type); // src.value 가 _Element일 경우, 그 참조가 넘어가짐.
     }
 }
